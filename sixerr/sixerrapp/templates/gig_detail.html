@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block page%}
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h3>I will teach you python programming</h3>
+          <hr/>
+          <img src="{% static 'img/gig.png' %}" class="img-responsive center-block">
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>About this Gig</h4>
+        </div>
+        <div class="panel-body">
+          <p>I will teach you full course in 1 month</p>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>Review</h4>
+        </div>
+        <ul class="list-group">
+          {% for i in '123' %}
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-2">
+                  <img src="{% static 'img/avatar.jpg' %}" class="img-circle center-block" height="60" width="60">
+                </div>
+                <div class="col-md-10">
+                  <h5>Mohsin</h5>
+                  <p>Very nice teacher. Highly recommended</p>
+                </div>
+              </div>
+            </li>
+          {% endfor %}
+
+        </ul>
+      </div>
+     </div>
+    <div class="col-md-4"></div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <button type="button" class="btn btn-success btn-block" >Order Now (6$)</button>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img src="{% static 'img/avatar.jpg' %}" class="img-circle center-block" height="100" width="100">
+          <h4 class="text-center">Faheem</h4>
+          <hr/>
+          <p>I have 5 Years of Teaching experince.</p>
+        </div>
+      </div>
+ </div>
+
+{% endblock %}
