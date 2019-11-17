@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"</script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-
   </head>
   <br><br>
   <body>
@@ -19,26 +18,39 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="/"><img src="{% static "img/logo.png" %}" height="23"></a>
         </div>
-        <form class="navbar-form navbar-left" role="search">
+        <form class="navbar-form navbar-left" role="search" method="GET" action='/search/'>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="find Teachers">
+            <div class="input-group">
+              <input type="text" name="title" class="form-control" placeholder="Find Gigs">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-success">Find</button>
+              </span>
+            </div>
           </div>
         </form>
           <ul class="nav navbar-nav navbar-right">
             {% if user and not user.is_anonymous %}
              <li class="dropdown">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                 role="button" aria-haspopup="true aria-expand="false">
-                 <img src="{% static 'img/avatar.jpg'%}" class="img-circle" height="22" width="22">
+                 role="button" aria-haspopup="true" aria-expanded="false">
+                 <img src="{% if user.profile %} {{ user.profile.avatar }} {% else %} {% static 'img/avatar.jpg' %} {% endif %}" class="img-circle" height="22" width="22">&nbsp;
                  {{ user.get_full_name|default:user.username}} <span class="caret"></span>
                </a>
                <ul class="dropdown-menu">
+                 <li><a href="{% url 'create_gig' %}">Create Gig</a></li>
+                 <li><a href="{% url 'my_gigs' %}">My Gigs</a></li>
+                 <li role="seperator" class="divider"></li>
+                 <li><a href="{% url 'my_sellings' %}">My Sellings</a></li>
+                 <li><a href="{% url 'my_buyings' %}">My Buyings</a></li>
+                 <li role="seperator" class="divider"></li>
+                 <li><a href="{% url 'profile' user.username %}">My Profile</a></li>
+                 <li role="seperator" class="divider"></li>
                  <li><a href="{% url 'auth:logout' %}?next={{request.path}}">Logout</a></li>
                </ul>
              </li>
             {% else %}
               <li>
-                <a href="{% url 'social:begin' 'facebook' %}?next={{request.path}}">Login with Facebook</a>
+                <a href="{% url 'social:begin' 'facebook' %}?next=/">Login with FB</a>
               </li>
             {% endif %}
           </ul>
@@ -48,11 +60,12 @@
      <div id="category">
       <div class="container">
        <ul class="nav navbar-nav">
-        <li><a href="#">Programming</a></li>
-        <li><a href="#">History</a></li>
-        <li><a href="#">Maths</a></li>
-        <li><a href="#">English</a></li>
-        <li><a href="#">Accounting</a></li>
+        <li><a href="/category/web-programming">Programming</a></li>
+        <li><a href="/category/history">History</a></li>
+        <li><a href="/category/maths">Maths</a></li>
+        <li><a href="/category/english">English</a></li>
+        <li><a href="/category/accounting-finance">Accounting</a></li>
+        <li><a href="/category/graphics-design">Graphics & Design</a></li>
        </ul>
      </div>
     </div>
